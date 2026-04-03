@@ -71,16 +71,11 @@ Avant de commencer, vérifiez que votre machine de gestion peut communiquer avec
         
         ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini assign_ports.yml
 
-3. Tests et Résultats*
+## ✅ Tests et Résultats de Vérification
 
-    Voici comment nous avons validé le bon fonctionnement :
-
-        Test          Commande de Vérification         Résultat Attendu
-
-        VLANs         show vlan brief	               Les VLANs 10, 20 et 30 sont actifs sur SW1.
-
-        Routage       show ip route ospf	           R1 et R2 connaissent les réseaux des VLANs via OSPF.
-
-        DHCP          ip dhcp (sur VPCS)	           Les clients reçoivent une IP dans leur plage respective (192.168.x.0/24).
-    
-        Connectivité  ping 192.168.10.10	           Communication réussie entre les VLANs.# PFE-Ansible-GNS3
+| Test | Commande de Vérification | Résultat Attendu |
+| :--- | :--- | :--- |
+| **VLANs** | `show vlan brief` | Les VLANs 10, 20 et 30 sont actifs sur SW1. |
+| **Routage** | `show ip route` | R1 et R2 connaissent les réseaux des VLANs via OSPF. |
+| **DHCP** | `ip dhcp` (sur VPCS) | Les clients reçoivent une IP dans leur plage respective (192.168.x.0/24). |
+| **Connectivité** | `ping 192.168.10.10` | Communication réussie entre les différents VLANs. |
