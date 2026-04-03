@@ -79,3 +79,107 @@ Avant de commencer, vérifiez que votre machine de gestion peut communiquer avec
 | **Routage** | `show ip route` | R1 et R2 connaissent les réseaux des VLANs via OSPF. |
 | **DHCP** | `ip dhcp` (sur VPCS) | Les clients reçoivent une IP dans leur plage respective (192.168.x.0/24). |
 | **Connectivité** | `ping 192.168.10.10` | Communication réussie entre les différents VLANs. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 🚀 PFE 2026: Automation of Agile Network Infrastructure (Ansible & GNS3)
+
+*Presented by:* 
+* *YASSINE EL GHAZI* (yassine.elghazi24@ump.ac.ma)
+* *YOUSSEF EL AHMADI* (youssef.elahmadi24@ump.ac.ma)
+* *NOUAMANE EL-JANHI* (nouamane.el-janhi24@ump.ac.ma)
+
+## 📝 Project Description
+This project involves automating the configuration and management of a simulated Cisco network infrastructure on *GNS3*. Using **Ansible*, we successfully configured multiple devices (routers and switches) in a centralized, fast, and error-free manner.
+
+### Objectives Achieved:
+- Automatic configuration of hostnames.
+- Creation and management of VLANs (Servers, Admin, Users).
+- Dynamic assignment of access ports.
+- Implementation of *OSPF* dynamic routing.
+- Configuration of the *SSH* protocol for remote management.
+- Deployment of *DHCP* servers for automatic addressing.
+
+---
+
+## 🛠️ Software & IOS Images Used
+To reproduce this lab, you will need the following system images used in our environment:
+
+| Equipment | Image Version / File | Download Link |
+| :--- | :--- | :--- |
+| *Cisco 7200 Router* | c7200-adventerprisek9-mz.124-24.T8.bin | [Download HERE](https://archive.org/download/CiscoIOS7200/c7200-adventerprisek9-mz.124-24.T8.bin) |
+| *Cisco 3725 Router* | c3725-adventerprisek9-mz.124-15.T14.bin | [Download HERE](https://archive.org/download/CiscoIOSCollection/c3725-adventerprisek9-mz.124-15.T14.bin) |
+| *L2 Switch (IOSv)* | vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2 | [Cisco link (virl)](https://learningnetworkstore.cisco.com/cisco-virtual-routing-and-forwarding/cisco-modeling-labs-personal/CML-PERSONAL.html) |
+| *IOSv Router* | vios-adventerprisek9-m.vmdk.SPA.156-2. T.qcow2 | [Cisco link (virl)](https://learningnetworkstore.cisco.com/cisco-virtual-routing-and-forwarding/cisco-modeling-labs-personal/CML-PERSONAL.html) |
+| *Ansible machine* | Debian 12.6 (QCOW2) | [Download Debian](https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2) |
+
+---
+
+## 🌐 Network Topology
+The infrastructure consists of:
+- *R1 & R2*: Cisco 7200 routers.
+- *SW1*: Cisco IOSvL2 switch.
+- *Clients*: Admin PC (VLAN 20), User PC (VLAN 30), DMZ/Server Zone (VLAN 10).
+
+![GNS3 Topology](topology.png)
+
+---
+
+## 🛠️ Execution Guide (Commands)
+
+To launch the project, ensure you are in the project's root directory and use the following commands:
+
+### 1. Connectivity Check (Ansible Ping)
+Before starting, verify that your management machine can communicate with the equipment:
+
+ansible all -i hosts.ini -m ping
+1. Launching the Global Deployment (Master Playbook)
+
+This is the main command that executes all configurations at once (VLANs, Trunk, DHCP, OSPF):
+
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini master_pfe.yml
+
+2. Launching Specific Modules (Separate Playbooks)
+
+If you want to launch a specific part of the configuration:
+
+Switch Configuration (VLANs & SSH):
+
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini configure_switch.yml
+
+    Configuring OSPF Routing:
+
+        ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini ospf_config.yml
+
+    Assigning Ports to VLANs:
+        
+        ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini assign_ports.yml
+
+## ✅ Tests and Verification Results
+
+| Test | Verification Command | Expected Result |
+
+| :--- | :--- | :--- |
+
+| *VLANs* | show vlan brief | VLANs 10, 20, and 30 are active on SW1. |
+
+| *Routing* | show ip route | R1 and R2 are aware of the VLAN networks via OSPF. |
+
+| *DHCP* | ip dhcp (on VPCS) | Clients are receiving an IP address in their respective range (192.168.x.0/24). |
+
+| *Connectivity* | ping 192.168.10.10 | Communication successful between the different VLANs. |
