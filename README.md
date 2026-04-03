@@ -81,7 +81,7 @@ Avant de commencer, vérifiez que votre machine de gestion peut communiquer avec
 | **Connectivité** | `ping 192.168.10.10` | Communication réussie entre les différents VLANs. |
 
 
-##########----------- English version -----------##########
+# ##########----------- English version -----------##########
 
 # 🚀 PFE 2026: Automation of Agile Network Infrastructure (Ansible & GNS3)
 
