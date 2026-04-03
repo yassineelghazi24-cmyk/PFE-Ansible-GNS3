@@ -18,6 +18,19 @@ Ce projet consiste à automatiser la configuration et la gestion d'une infrastru
 
 ---
 
+## 🛠️ Logiciels & Images IOS utilisés
+Pour reproduire ce lab, vous aurez besoin des images systèmes suivantes utilisées dans notre environnement :
+
+| Équipement | Version de l'Image / Fichier | Lien de Téléchargement |
+| :--- | :--- | :--- |
+| **Routeur Cisco 7200** | c7200-adventerprisek9-mz.124-24.T8.bin | [Télécharger ICI](https://archive.org/download/CiscoIOS7200/c7200-adventerprisek9-mz.124-24.T8.bin) |
+| **Routeur Cisco 3725** | c3725-adventerprisek9-mz.124-15.T14.bin | [Télécharger ICI](https://archive.org/download/CiscoIOSCollection/c3725-adventerprisek9-mz.124-15.T14.bin) |
+| **Switch L2 (IOSv)** | vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2 | [Lien Cisco (virl)](https://learningnetworkstore.cisco.com/cisco-virtual-routing-and-forwarding/cisco-modeling-labs-personal/CML-PERSONAL.html) |
+| **Routeur IOSv** | vios-adventerprisek9-m.vmdk.SPA.156-2.T.qcow2 | [Lien Cisco (virl)](https://learningnetworkstore.cisco.com/cisco-virtual-routing-and-forwarding/cisco-modeling-labs-personal/CML-PERSONAL.html) |
+| **Machine Ansible** | Debian 12.6 (QCOW2) | [Télécharger Debian](https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2) |
+
+---
+
 ## 🌐 Topologie du Réseau
 L'infrastructure se compose de :
 - **R1 & R2** : Routeurs Cisco 7200.
