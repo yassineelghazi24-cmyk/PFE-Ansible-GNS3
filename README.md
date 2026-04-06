@@ -1,4 +1,4 @@
-# 🚀 PFE 2026 : Automatisation de l'Infrastructure Réseau Agile (Ansible & GNS3)
+# 🚀 PFE 2026 : Automatisation de l'Infrastructure Réseau Agile (Ansible & GNS3) "Version francais"
 
 **Réalisé par :** 
 * **YASSINE EL GHAZI** (yassine.elghazi24@ump.ac.ma)
@@ -80,10 +80,7 @@ Avant de commencer, vérifiez que votre machine de gestion peut communiquer avec
 | **DHCP** | `ip dhcp` (sur VPCS) | Les clients reçoivent une IP dans leur plage respective (192.168.x.0/24). |
 | **Connectivité** | `ping 192.168.10.10` | Communication réussie entre les différents VLANs. |
 
-
-# #####---------- English version -----------#####
-
-# 🚀 PFE 2026: Automation of Agile Network Infrastructure (Ansible & GNS3)
+# 🚀 PFE 2026: Automation of Agile Network Infrastructure (Ansible & GNS3) "English version"
 
 *Presented by:* 
 * *YASSINE EL GHAZI* (yassine.elghazi24@ump.ac.ma)
@@ -133,20 +130,21 @@ To launch the project, ensure you are in the project's root directory and use th
 ### 1. Connectivity Check (Ansible Ping)
 Before starting, verify that your management machine can communicate with the equipment:
 
-ansible all -i hosts.ini -m ping
+        ansible all -i hosts.ini -m ping
+
 1. Launching the Global Deployment (Master Playbook)
 
-This is the main command that executes all configurations at once (VLANs, Trunk, DHCP, OSPF):
+    This is the main command that executes all configurations at once (VLANs, Trunk, DHCP, OSPF):
 
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini master_pfe.yml
+        ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini master_pfe.yml
 
 2. Launching Specific Modules (Separate Playbooks)
 
-If you want to launch a specific part of the configuration:
+    If you want to launch a specific part of the configuration:
 
-Switch Configuration (VLANs & SSH):
+    Switch Configuration (VLANs & SSH):
 
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini configure_switch.yml
+        ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini configure_switch.yml
 
     Configuring OSPF Routing:
 
@@ -159,13 +157,9 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts.ini configure_switch.y
 ## ✅ Tests and Verification Results
 
 | Test | Verification Command | Expected Result |
-
 | :--- | :--- | :--- |
+| **VLANs** | `show vlan brief` | VLANs 10, 20, and 30 are active on SW1. |
+| **Routing** | `show ip route` | RR1 and R2 are aware of the VLAN networks via OSPF. |
+| **DHCP** | `ip dhcp` (on VPCS) | Clients are receiving an IP address in their respective range (192.168.x.0/24). |
+| **Connectivity** | `ping 192.168.10.10` | Communication successful between the different VLANs. |
 
-| *VLANs* | show vlan brief | VLANs 10, 20, and 30 are active on SW1. |
-
-| *Routing* | show ip route | R1 and R2 are aware of the VLAN networks via OSPF. |
-
-| *DHCP* | ip dhcp (on VPCS) | Clients are receiving an IP address in their respective range (192.168.x.0/24). |
-
-| *Connectivity* | ping 192.168.10.10 | Communication successful between the different VLANs. |
